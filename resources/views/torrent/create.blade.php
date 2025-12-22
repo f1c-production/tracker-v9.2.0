@@ -532,7 +532,7 @@
                 @livewire('bbcode-input', ['name' => 'description', 'label' => __('common.description'), 'required' => true])
                 <p
                     class="form__group"
-                    x-show="cats[cat].type === 'movie' || cats[cat].type === 'tv'"
+                    
                 >
                     <textarea
                         id="upload-form-mediainfo"
