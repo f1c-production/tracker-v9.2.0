@@ -141,6 +141,47 @@
                 :anon="$torrent->anon"
             />
             @include('components.partials._torrent-icons')
+            {{-- -----------------------------
+                Audio list flags
+                Autor: Omar Abarca Arriaga
+                Fecha: 13/10/2025
+                -----------------------------
+                Este bloque muestra las banderas de los idiomas del audio
+                asociado a cada torrent en la lista principal.
+                Se añade un tercer renglón debajo de los íconos existentes.
+                Cada bandera se obtiene usando la función `language_flag()`
+                y se muestra con un tooltip indicando el idioma.
+                Total: 15 líneas de código.
+            --}}
+            @php
+                // Decodificar mediainfo de forma segura
+                $mediaInfo = [];
+                if (is_array($torrent->mediainfo)) {
+                    $mediaInfo = $torrent->mediainfo;
+                } elseif (!empty($torrent->mediainfo)) {
+                    $decoded = json_decode($torrent->mediainfo, true);
+                    if (is_array($decoded)) {
+                        $mediaInfo = $decoded;
+                    }
+                }
+            @endphp
+            @if(!empty($torrent->mediaInfoAudio))
+                <div class="torrent-search--list__audio">
+                    <span>{{ __('torrent.audio') }}: </span>
+                    @foreach($torrent->mediaInfoAudio as $audioElement)
+                        @if(!empty($audioElement['language']))
+                            <img
+                                src="{{ language_flag($audioElement['language']) }}"
+                                alt="{{ $audioElement['language'] }}"
+                                width="20"
+                                height="13"
+                                title="{{ $audioElement['language'] }}"
+                            />
+                        @endif
+                    @endforeach
+                </div>
+            @endif
+            {{-- Fin del bloque Audio list flags --}}
         </div>
     </td>
     <td class="torrent-search--list__buttons">
