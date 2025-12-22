@@ -222,6 +222,19 @@
     color: var(--torrent-row-visited-fg);
 }
 
+/**
+    Autor: Omar Abarca Arriaga
+    Fecha: 13/10/2025
+    Audio flags container */
+.torrent-search--list__audio {
+    grid-column: 1 / -1; /* ocupa todo el ancho del grid */
+    display: flex; /* usar flexbox para alinear los elementos */
+    align-items: center; /* alinear verticalmente al centro */
+    flex-wrap: wrap; /* permitir que los elementos se envuelvan a la siguiente línea si es necesario */
+    gap: 6px; /* espacio entre Audio: y las banderas */
+    margin-top: 4px;
+}
+
 .torrent-search--list__uploader {
     grid-area: uploader;
     margin-right: 12px;
