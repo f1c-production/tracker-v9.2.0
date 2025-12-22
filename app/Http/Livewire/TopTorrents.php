@@ -20,6 +20,7 @@ use App\Models\Torrent;
 use App\Models\User;
 use App\Traits\TorrentMeta;
 use Livewire\Component;
+use App\Helpers\MediaInfo;
 
 class TopTorrents extends Component
 {
@@ -55,6 +56,7 @@ class TopTorrents extends Component
                         ->where('active', '=', 0)
                         ->where('seeder', '=', 1),
                 ])
+                ->addSelect('mediainfo')
                 ->selectRaw(<<<SQL
                     CASE
                         WHEN category_id IN (SELECT id FROM categories WHERE movie_meta = 1) THEN 'movie'
@@ -101,10 +103,36 @@ class TopTorrents extends Component
                 ->take(5)
                 ->get();
 
-            // See app/Traits/TorrentMeta.php
-            $this->scopeMeta($torrents);
+         /**
+         * Audio list flags
+         * Autor: Omar Abarca Arriaga
+         * Fecha: 13/10/2025
+         * Objetivo: Mostrar las banderas de los idiomas de las pistas de audio en la lista de torrents
+         * Descripción: Se parsea el mediainfo de cada torrent para extraer los idiomas de las pistas de audio
+         * y se almacena en una propiedad dinámica 'mediaInfoAudio' del modelo Torrent.
+         * Luego, en la vista, se itera sobre esta propiedad para mostrar las banderas correspondientes.
+         */
+        foreach ($torrents as $torrent) {
+            $mediaInfoAudio = []; // Inicializamos
 
-            return $torrents;
+            if (!empty($torrent->mediainfo)) {
+                // Parseamos correctamente
+                $parsed = (new MediaInfo())->parse($torrent->mediainfo);
+
+                if (!empty($parsed['audio']) && is_array($parsed['audio'])) {
+                    foreach ($parsed['audio'] as $track) {
+                        $mediaInfoAudio[] = [
+                            'language' => $track['language'] ?? ''
+                        ];
+                    }
+                }
+            }
+            $torrent->mediaInfoAudio = $mediaInfoAudio;
+        }    
+        // See app/Traits/TorrentMeta.php
+        $this->scopeMeta($torrents);
+
+        return $torrents;
         }
     }
 
