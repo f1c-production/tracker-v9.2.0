@@ -18,10 +18,13 @@
     @endisset
 
     @if ($torrent->internal)
-        <i
-            class="{{ config('other.font-awesome') }} fa-magic torrent-icons__internal"
-            title="{{ __('torrent.internal-release') }}"
-        ></i>
+        <img 
+            src="{{ asset('img/internal.png') }}" 
+            alt="{{ __('torrent.internal-release') }}" 
+            height="12" 
+            title="{{ __('torrent.internal-release') }}" 
+            class="torrent-icons__internal"
+        >
     @endif
 
     @if ($torrent->personal_release)
