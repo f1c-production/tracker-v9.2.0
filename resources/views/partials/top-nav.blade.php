@@ -105,6 +105,12 @@
                         {{ __('common.news') }}
                     </a>
                 </li>
+                <li>
+                    <a href="https://discord.gg/qAc3cARbnT">
+                        <img src="https://f1carreras.xyz/img/discord3.png" alt="Discord" width="30px">
+                        Discord
+                    </a>
+                </li>                
                 @if (! empty(config('unit3d.chat-link-url')))
                     <li>
                         <a href="{{ config('unit3d.chat-link-url') }}">
@@ -217,7 +223,7 @@
                             class="{{ $donationPercentage < 100 ? 'fa-fade' : '' }}"
                             style="color: lightcoral"
                         >
-                            Donate
+                            Apoya A F1Carreras
                         </span>
                         <div class="progress" style="background-color: slategray">
                             <div
@@ -243,11 +249,11 @@
                             Support {{ config('other.title') }} ({{ $donationPercentage }}%)
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="https://square.link/u/VjB1CNfm" target="_blank">
                             <i class="fas fa-handshake"></i>
                             Support UNIT3D
-                        </a>
+                        </a>-->
                     </li>
                 </ul>
             </li>
