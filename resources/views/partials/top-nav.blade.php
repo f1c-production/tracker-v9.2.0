@@ -107,7 +107,7 @@
                 </li>
                 <li>
                     <a href="https://discord.gg/qAc3cARbnT">
-                        <img src="https://f1carreras.xyz/img/discord3.png" alt="Discord" width="30px">
+                        <img src="https://f1carreras.xyz/img/discord3.png" alt="Discord" width="40px">
                         Discord
                     </a>
                 </li>                
