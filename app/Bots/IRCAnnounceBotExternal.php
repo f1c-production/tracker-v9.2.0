@@ -118,7 +118,7 @@ class IRCAnnounceBotExternal
             return false;
         }
 
-        if (! $response->ok()) {
+        if (! $response->successful()) {
             Log::notice('External IRC Announce error - POST', [
                 'status' => $response->status(),
                 'body'   => $response->body(),
