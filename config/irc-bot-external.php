@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'is_enabled' => false,
+    'is_enabled' => env('IRC_ANNOUNCE_EXTERNAL_ENABLED', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     |
     */
 
-    'unix_socket' => env('IRC_ANNOUNCE_EXTERNAL_UNIX_SOCKET'),
+    'unix_socket' => env('IRC_ANNOUNCE_EXTERNAL_UNIX_SOCKET') ?: null,
 
     /*
     |--------------------------------------------------------------------------
